@@ -57,28 +57,38 @@ mw.title = {}
 local title = {}
 
 --- Test for whether two titles are equal. Fragments are ignored.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.equals)
 ---@param a mw.title
 ---@param b mw.title
 ---@return boolean
 function mw.title.equals(a, b) end
 
 --- Returns -1, 0, or 1 to indicate whether a is less than, equal to, or greater than b.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.compare)
 ---@param a mw.title
 ---@param b mw.title
 ---@return integer
 function mw.title.compare(a, b) end
 
 --- Returns the title object for the current page.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.getCurrentTitle)
 ---@return mw.title
 function mw.title.getCurrentTitle() end
 
 --- Creates a new title object.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.new)
 ---@param text_or_id string|integer
 ---@param namespace? string|integer
 ---@return mw.title|nil
 function mw.title.new(text_or_id, namespace) end
 
 --- Creates a title object, always applying the specified namespace.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.makeTitle)
 ---@param namespace string|integer
 ---@param title string
 ---@param fragment? string
@@ -90,14 +100,20 @@ function mw.title.makeTitle(namespace, title, fragment, interwiki) end
 local titleBatch = {}
 
 --- Requests that the batch lookup fills out the .exists, .contentModel, .id and .isRedirect fields.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.newBatch)
 ---@return mw.title.batch @Returns the batch object for call chaining.
 function titleBatch:lookupExistence() end
 
 --- Returns a table with title objects. Any invalid titles will be nil in the table.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.newBatch)
 ---@return table<integer, mw.title|nil>
 function titleBatch:getTitles() end
 
 --- Create a batch of titles to look up.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.newBatch)
 ---@param listOfPages table<integer, string>
 ---@param defaultNamespace? string|integer
 ---@return mw.title.batch
@@ -106,50 +122,70 @@ function mw.title.newBatch(listOfPages, defaultNamespace) end
 -- TITLE OBJECT METHODS
 
 --- Returns true if this title is a subpage of title2.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.isSubpageOf)
 ---@param title2 mw.title
 ---@return boolean
 function title:isSubpageOf(title2) end
 
 --- Returns true if this title is in the given namespace.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.inNamespace)
 ---@param ns integer|string
 ---@return boolean
 function title:inNamespace(ns) end
 
 --- Returns true if this title is in any of the given namespaces.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.inNamespaces)
 ---@param ... integer|string
 ---@return boolean
 function title:inNamespaces(...) end
 
 --- Returns true if this title's subject namespace is in the given namespace.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.hasSubjectNamespace)
 ---@param ns integer|string
 ---@return boolean
 function title:hasSubjectNamespace(ns) end
 
 --- Returns a title object for a subpage of this title.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.subPageTitle)
 ---@param text string
 ---@return mw.title|nil
 function title:subPageTitle(text) end
 
 --- Returns title.text encoded as it would be in a URL.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.partialUrl)
 ---@return string
 function title:partialUrl() end
 
 --- Returns the full URL (with optional query table/string) for this title.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.fullUrl)
 ---@param query? table|string
 ---@param proto? string "http", "https", "relative", or "canonical"
 ---@return string
 function title:fullUrl(query, proto) end
 
 --- Returns the local URL (with optional query table/string) for this title.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.localUrl)
 ---@param query? table|string
 ---@return string
 function title:localUrl(query) end
 
 --- Returns the canonical URL (with optional query table/string) for this title.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.canonicalUrl)
 ---@param query? table|string
 ---@return string
 function title:canonicalUrl(query) end
 
 --- Returns the (unparsed) content of the page, or nil if there is no page.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.title.getContent)
 ---@return string|nil
 function title:getContent() end

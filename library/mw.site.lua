@@ -31,7 +31,10 @@
 ---@field admins integer Number of users in group 'sysop'.
 local site_stats = {}
 
---- Gets statistics about the category. This function is EXPENSIVE.
+--- Gets statistics about the category. [EXPENSIVE]
+--- When `which` is '"*"' a table is returned containing `all`, `subcats`, `files`, and `pages`.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.site.stats.pagesInCategory)
 ---@overload fun(category: string, which: string): integer
 ---@param category string
 ---@param which '"*"'
@@ -39,11 +42,15 @@ local site_stats = {}
 function site_stats.pagesInCategory(category, which) end
 
 --- Returns the number of pages in the given namespace.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.site.stats.pagesInNamespace)
 ---@param namespace integer
 ---@return integer
 function site_stats.pagesInNamespace(namespace) end
 
 --- Returns the number of users in the given group.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.site.stats.usersInGroup)
 ---@param group string
 ---@return integer
 function site_stats.usersInGroup(group) end
@@ -75,6 +82,9 @@ function site_stats.usersInGroup(group) end
 mw.site = {}
 
 --- Returns a table holding data about available interwiki prefixes.
+--- If `filter` is provided it may be '"local"' or '"!local"'.
+---
+--- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.site.interwikiMap)
 ---@param filter? string '"local"' or '"!local"'
 ---@return table<string, mw.site.interwiki>
 function mw.site.interwikiMap(filter) end
