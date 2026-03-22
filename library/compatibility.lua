@@ -1,7 +1,6 @@
 ---@meta
 
 -- REMOVED GLOBALS
--- These are crossed out in the editor to prevent accidental use in MediaWiki
 
 ---@deprecated Scribunto removes print. Use mw.log() instead.
 function print(...) end
@@ -9,7 +8,7 @@ function print(...) end
 ---@deprecated Scribunto removes collectgarbage.
 function collectgarbage(...) end
 
----@deprecated Scribunto removes module.
+---@deprecated Scribunto removes module. Use local p = {} ... return p instead.
 function module(...) end
 
 ---@deprecated Scribunto removes dofile.
@@ -24,24 +23,78 @@ function load(...) end
 ---@deprecated Scribunto removes loadstring.
 function loadstring(...) end
 
+---@deprecated Scribunto removes the global arg table. Use frame.args instead.
+arg = nil
+
 ---@deprecated Use a for loop with pairs() instead.
----@param t table
----@param f function
 function table.foreach(t, f) end
 
 ---@deprecated Use a for loop with ipairs() instead.
----@param t table
----@param f function
 function table.foreachi(t, f) end
 
 ---@deprecated Use the # operator instead.
----@param t table
----@return integer
 function table.getn(t) end
 
--- PARTIAL LIBRARIES
--- These libraries were disabled in the LSP settings.
--- But some are rebuild only the functions Scribunto permits.
+-- MODIFIED BASIC FUNCTIONS
+
+--- Returns a reference to the current global variable table.
+---@type table<string, any>
+_G = {}
+
+--- The running version of Lua (e.g. "Lua 5.1").
+---@type string
+_VERSION = "Lua 5.1"
+
+--- Support for the __pairs metamethod
+---@param t table
+---@return function next, table t, any key
+function pairs(t) end
+
+--- Support for the __ipairs metamethod
+---@param t table
+---@return function iter, table t, integer i
+function ipairs(t) end
+
+--- Works on tables only to prevent unauthorized access to parent environments.
+---@param object table
+---@return table|nil
+function getmetatable(object) end
+
+--- Pointer addresses of tables and functions are not provided in Scribunto.
+---@param v any
+---@return string
+function tostring(v) end
+
+--- Certain internal errors (like timeout) cannot be intercepted by pcall in Scribunto.
+---@param f function
+---@param ... any
+---@return boolean success, any result
+function pcall(f, ...) end
+
+--- Certain internal errors (like timeout) cannot be intercepted by xpcall in Scribunto.
+---@param f function
+---@param err function
+---@param ... any
+---@return boolean success, any result
+function xpcall(f, err, ...) end
+
+--- Loads a Scribunto library or a wiki module from the `Module:` namespace.
+---@param modname string The module name (e.g., 'Module:Example') or a built-in library name (e.g., 'libraryUtil').
+---@return any
+function require(modname) end
+
+--- May not be available depending on allowEnvFuncs configuration.
+---@param f? integer|function
+---@return table
+function getfenv(f) end
+
+--- May not be available depending on allowEnvFuncs configuration.
+---@param f integer|function
+---@param env table
+---@return function
+function setfenv(f, env) end
+
+-- SCRIBUNTO LIBRARIES
 
 ---@class os
 os = {}
@@ -62,7 +115,7 @@ function os.date(format, time) end
 ---@return integer
 function os.difftime(t2, t1) end
 
---- Returns the current time when called without arguments, or a time representing the date and time specified by the given table.
+--- Returns the current time or a time representing the provided table.
 ---@param table? table
 ---@return integer
 function os.time(table) end
@@ -71,6 +124,7 @@ function os.time(table) end
 debug = {}
 
 --- Returns a string with a traceback of the call stack.
+---@overload fun(thread: thread, message?: string, level?: integer): string
 ---@param message? string
 ---@param level? integer
 ---@return string
@@ -78,50 +132,28 @@ function debug.traceback(message, level) end
 
 ---@class package
 package = {}
+---@type table<string, any>
 package.loaded = {}
+---@type table<string, any>
 package.preload = {}
-package.loaders = {}
 
 --- Sets a metatable for module with its __index field referring to the global environment.
 ---@param module table
 function package.seeall(module) end
 
---- Loads the given module. Looks in Scribunto's built-in libraries first, then in the `Module:` namespace.
----@param modname string The module name (e.g., 'Module:Example') or a built-in library name (e.g., 'libraryUtil').
----@return any
-function require(modname) end
+-- STRING LIBRARY ALIASES
 
--- BASIC FUNCTIONS
-
---- A reference to the current global variable table.
----@type table
-_G = {}
-
---- The running version of Lua, e.g. "Lua 5.1".
----@type string
-_VERSION = "Lua 5.1"
-
--- STRING LIBRARY
-
---- Alias for mw.ustring.lower(). Converts string to lowercase using Unicode rules.
+--- Alias for mw.ustring.lower().
 ---@param s string
 ---@return string
 function string.ulower(s) end
 
---- Alias for mw.ustring.upper(). Converts string to uppercase using Unicode rules.
+--- Alias for mw.ustring.upper().
 ---@param s string
 ---@return string
 function string.uupper(s) end
 
--- MISC
-
---- May not be available depending on allowEnvFuncs in the engine configuration.
----@param f? integer|function
----@return table
-function getfenv(f) end
-
---- May not be available depending on allowEnvFuncs in the engine configuration.
----@param f integer|function
----@param env table
----@return function
-function setfenv(f, env) end
+--- Alias for mw.ustring.len().
+---@param s string
+---@return integer|nil
+function string.ulen(s) end
