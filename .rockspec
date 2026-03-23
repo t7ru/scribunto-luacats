@@ -1,6 +1,6 @@
 rockspec_format = "3.0"
 package = "scribunto"
-version = "dev-1"
+version = "0.1.0-1"
 
 source = {
     url = "git+https://github.com/t7ru/scribunto-luacats"
