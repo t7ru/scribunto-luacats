@@ -66,7 +66,6 @@ function site_stats.usersInGroup(group) end
 ---@field displayText string|nil
 ---@field tooltip string|nil
 
-
 ---@class mw.site
 ---@field currentVersion string The current version of MediaWiki.
 ---@field scriptPath string The value of $wgScriptPath.
