@@ -2,7 +2,7 @@
 
 LuaCATS type definitions for [Scribunto](https://www.mediawiki.org/wiki/Extension:Scribunto).
 
-Add a `.luarc.json` to your project root:
+If you do not use the VSCode extension, you can add a `.luarc.json` to your project root:
 ```json
 {
   "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",

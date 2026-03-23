@@ -1,0 +1,16 @@
+{
+	"name": "Scribunto",
+	"words": ["require[%s%(\"']+Module:", "mw%."],
+	"settings": {
+		"Lua.runtime.version": "Lua 5.1",
+		"Lua.runtime.builtin": {
+			"io": "disable",
+			"coroutine": "disable",
+			"os": "disable",
+			"debug": "disable",
+			"package": "disable",
+			"ffi": "disable",
+			"jit": "disable"
+		}
+	}
+}
