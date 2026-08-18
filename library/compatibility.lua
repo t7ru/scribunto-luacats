@@ -134,6 +134,8 @@ function debug.traceback(message, level) end
 package = {}
 ---@type table<string, any>
 package.loaded = {}
+---@type table<integer, function>
+package.loaders = {}
 ---@type table<string, any>
 package.preload = {}
 

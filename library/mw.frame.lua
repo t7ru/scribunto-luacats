@@ -19,6 +19,7 @@ local frame = {}
 --- Call a parser function, returning an appropriate string.
 ---
 --- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#frame:callParserFunction)
+---@overload fun(self: mw.frame, kwargs: {name: string, args?: table}): string
 ---@param name string
 ---@param args? table|string|number
 ---@param ... any

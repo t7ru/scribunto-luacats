@@ -5,6 +5,7 @@
 mw.uri = {}
 
 ---@class mw.uri.object
+---@operator tostring: string
 ---@field protocol string|nil String protocol/scheme.
 ---@field user string|nil String user.
 ---@field password string|nil String password.

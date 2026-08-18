@@ -15,6 +15,7 @@ mw.title = {}
 ---@field metadata table|nil Embedded metadata (e.g. Exif). [EXPENSIVE]
 
 ---@class mw.title
+---@operator tostring: string
 ---@field id integer The page_id. 0 if the page does not exist. [EXPENSIVE]
 ---@field interwiki string The interwiki prefix, or the empty string if none.
 ---@field namespace integer The namespace number.
