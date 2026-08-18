@@ -4,8 +4,8 @@
 
 mw.html = {}
 
+--- `tostring(html)` returns the built HTML.
 ---@class mw.html
----@operator tostring: string
 local html = {}
 
 --- Creates a new `mw.html` object containing a `tagName` html element.

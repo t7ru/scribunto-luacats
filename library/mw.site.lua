@@ -32,13 +32,14 @@
 local site_stats = {}
 
 --- Gets statistics about the category. [EXPENSIVE]
---- When `which` is '"*"' a table is returned containing `all`, `subcats`, `files`, and `pages`.
+--- Defaults to `"all"` (a number). `"*"` returns `{all, subcats, files, pages}`.
 ---
 --- [Reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#mw.site.stats.pagesInCategory)
----@overload fun(category: string, which: string): integer
+---@overload fun(category: string, which: "*"): {all: integer, subcats: integer, files: integer, pages: integer}
+---@overload fun(category: string, which?: "all"|"subcats"|"files"|"pages"): integer
 ---@param category string
----@param which '"*"'
----@return {all: integer, subcats: integer, files: integer, pages: integer}
+---@param which? string
+---@return integer
 function site_stats.pagesInCategory(category, which) end
 
 --- Returns the number of pages in the given namespace.

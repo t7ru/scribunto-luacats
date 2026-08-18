@@ -8,14 +8,14 @@ mw.title = {}
 ---@field exists boolean Whether the file exists.
 ---@field width integer|nil The width of the file.
 ---@field height integer|nil The height of the file.
----@field pages table|nil Tables for each page of the file, containing width and height.
+---@field pages {width: integer, height: integer}[]|nil Tables for each page of the file.
 ---@field size integer|nil The size of the file in bytes.
 ---@field mimeType string|nil The MIME type of the file.
 ---@field length integer The length (duration) of the media file in seconds.
 ---@field metadata table|nil Embedded metadata (e.g. Exif). [EXPENSIVE]
 
+--- Titles compare with `<` / `<=` / `==`. `tostring(title)` is `title.prefixedText`.
 ---@class mw.title
----@operator tostring: string
 ---@field id integer The page_id. 0 if the page does not exist. [EXPENSIVE]
 ---@field interwiki string The interwiki prefix, or the empty string if none.
 ---@field namespace integer The namespace number.
@@ -47,7 +47,7 @@ mw.title = {}
 ---@field subjectPageTitle mw.title
 ---@field redirectTarget mw.title|false Returns target if redirect, false otherwise.
 ---@field protectionLevels table<string, table> The page's protection levels. [EXPENSIVE]
----@field cascadingProtection table The cascading protections applicable to the page. [EXPENSIVE]
+---@field cascadingProtection {restrictions: table<string, table>, sources: table<integer, string>} The cascading protections applicable to the page. [EXPENSIVE]
 ---@field categories table The list of categories used on the page. [EXPENSIVE]
 ---@field content string|nil The unparsed content of the page.
 ---@field pageLang mw.language A language object for the title's content language. [EXPENSIVE]
