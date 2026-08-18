@@ -1,9 +1,10 @@
 rockspec_format = "3.0"
 package = "scribunto"
-version = "0.1.0-1"
+version = "0.1.1-1"
 
 source = {
-    url = "git+https://github.com/t7ru/scribunto-luacats"
+    url = "git+https://github.com/t7ru/scribunto-luacats",
+    tag = "0.1.1"
 }
 
 description = {
